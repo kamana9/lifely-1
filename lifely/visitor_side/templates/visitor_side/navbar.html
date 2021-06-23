@@ -1,0 +1,21 @@
+{% load static %}
+<header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <img src="{%static 'visitor_side/images/Lifely.png'%}" alt="" height="50" width="120">
+
+
+            <!-- <span class="ml-3 text-xl">Lifely</span> -->
+        </a>
+        <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <a href="{% url 'index:about'%}" class="mr-5 hover:text-gray-900">About us</a>
+            <a href="{% url 'index:blog'%}" class="mr-5 hover:text-gray-900">Blogs</a>
+            <a href="{% url 'auth:registration'%}" class="mr-5 hover:text-gray-900">Register</a>
+        </nav>
+        <button
+            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-blue-400 rounded text-base mt-4 md:mt-0">
+            <a href="{% url 'auth:login'%}"> <span class="hover:text-white"> GetStarted</span>
+            </a>
+        </button>
+    </div>
+</header>
