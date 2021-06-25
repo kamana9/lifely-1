@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% block title %}
+Register
+{% endblock title %}
 
-<body>
-    <h1>Reigstration</h1>
-</body>
+{% block content %}
 
-</html>
+    {% include 'auth_side/includes/navbar.html'%}
+    <h1>Register</h1>
+
+{% endblock content %}
