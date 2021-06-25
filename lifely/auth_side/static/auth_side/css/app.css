@@ -1,0 +1,9 @@
+.errorlist li,
+.error {
+  font-size: 14px !important;
+  color: orangered !important;
+}
+
+.error {
+  margin: 1rem 0;
+}
