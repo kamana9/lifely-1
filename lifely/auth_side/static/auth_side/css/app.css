@@ -7,3 +7,27 @@
 .error {
   margin: 1rem 0;
 }
+
+input {
+  max-width: 400px !important;
+  display: block;
+}
+
+input {
+  width: 100%;
+  margin: auto;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(209, 213, 219, 1);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+input:focus {
+  box-shadow: 1px 1px 3px 3px rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 1);
+  outline: none;
+}
