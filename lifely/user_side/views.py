@@ -18,17 +18,12 @@ def dashboard(request):
 
 @login_required(login_url='login')
 def events(request):
-    return render(request, "user_side/event_body.html")
+    return render(request, "user_side/events.html")
 
 
 @login_required(login_url='login')
-def todo(request):
-    return render(request, "user_side/todo_body.html")
-
-
-@login_required(login_url='login')
-def setting(request):
-    return render(request, "user_side/setting_body.html")
+def passwords(request):
+    return render(request, "user_side/password_manager.html")
 
 
 # @login_required(login_url='login')
