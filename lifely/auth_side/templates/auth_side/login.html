@@ -20,11 +20,11 @@ Login
             {% csrf_token %}
             <h2 class="text-blue-500 text-4xl font-medium mb-1 title-font text-center">Login</h2>
             <div class="relative my-4">
-                <label for="username" class="leading-7 text-sm text-blue-500">Username</label>
+                <label for="username" class="leading-7 font-medium text-sm text-blue-500">Username</label>
                 <input type="text" id="username" name="username" class="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
             </div>
             <div class="relative mb-10">
-                <label for="email" class="leading-7 text-sm text-blue-500">Password</label>
+                <label for="email" class="leading-7 font-medium text-sm text-blue-500">Password</label>
                 <input type="password" id="password" name="password" class="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
             </div>
             <button type='submit' class="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">Submit</button>
@@ -34,6 +34,9 @@ Login
             <div class="mt-4">
 			<div class="d-flex justify-content-center links">
 				<a href="{% url 'reset_password' %}" class="ml-2 text-blue-500">Forgot Password?</a>
+                <div class='text-gray-900 mx-2'>   
+				Don't have an account? <a href="{% url 'registration' %}" class="ml-2 text-blue-500">Register</a>
+                </div>
 			</div>
 		</div>
             </form>

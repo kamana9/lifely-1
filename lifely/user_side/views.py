@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout
-
+from .forms import PasswordChangingForm
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
 
 def logoutUser(request):
@@ -27,3 +29,9 @@ def todo(request):
 @login_required(login_url='login')
 def setting(request):
     return render(request, "user_side/setting_body.html")
+
+
+# @login_required(login_url='login')
+class PasswordChangeView(PasswordChangeView):
+    form_class = PasswordChangingForm
+    success_url = reverse_lazy('login')

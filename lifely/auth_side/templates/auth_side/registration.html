@@ -21,22 +21,22 @@ Register
       {% csrf_token %}
       <h2 class="text-blue-500 text-4xl font-medium mb-1 title-font text-center">Register</h2>
       <div class="relative my-4">
-        <label for="name" class="leading-7 text-sm text-blue-500">User Name</label>
+        <label for="name" class="leading-7 font-medium text-sm text-blue-500">User Name</label>
         {{form.username}}
         {{form.username.errors}}
       </div>
       <div class="relative mb-4">
-        <label for="name" class="leading-7 text-sm text-blue-500">Email</label>
+        <label for="name" class="leading-7 font-medium text-sm text-blue-500">Email</label>
         {{form.email}}
         {{form.email.errors}}
       </div>
-      <div class="relative mb-10">
-        <label for="password" class="leading-7 text-sm text-blue-500">Password</label>
+      <div class="relative mb-4">
+        <label for="password" class="leading-7 font-medium text-sm text-blue-500">Password</label>
         {{form.password1}}
         {{form.password1.errors}}
       </div>
       <div class="relative mb-10">
-        <label for="password2" class="leading-7 text-sm text-blue-500">Confirm Password</label>
+        <label for="password2" class="leading-7 font-medium text-sm text-blue-500">Confirm Password</label>
         {{form.password2}}
         {{form.password2.errors}}
       </div>

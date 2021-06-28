@@ -18,6 +18,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin-lifely/', admin.site.urls),
     path('', include('visitor_side.urls')),
-    path('dashboard/', include('user_side.urls')),
+    path('profile/', include('user_side.urls')),
     path('auth/', include('auth_side.urls'))
 ]
