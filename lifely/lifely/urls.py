@@ -17,8 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 urlpatterns = [
     path('admin-lifely/', admin.site.urls),
-    path('', include('visitor_side.urls', namespace="index"),),
-    path('dashboard/', include('user_side.urls', namespace="dashobord"), ),
-    path('auth/', include('auth_side.urls', namespace="auth"),)
-
+    path('', include('visitor_side.urls')),
+    path('profile/', include('user_side.urls')),
+    path('auth/', include('auth_side.urls'))
 ]
