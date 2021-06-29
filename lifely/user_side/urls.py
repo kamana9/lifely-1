@@ -4,6 +4,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.dashboard, name='user-dashboard'),
+    path('todo-delete/<int:pk>/',
+         views.deleteTodo, name='user-todo-delete'),
     path('events', views.events, name='user-events'),
     path('passwords', views.passwords, name='user-passwords'),
     path('password-delete/<int:pk>/',
