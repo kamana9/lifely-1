@@ -17,17 +17,25 @@ Events
             <div class="events-input-container md:p-5">
                 <h1 class="text-3xl font-medium text-blue-600">EVENTS</h1>
                 <form method="POST" class='my-5'>
+                    {% csrf_token %}
                     <div class="form-control my-2">
                         <label for="title" class="leading-7 font-medium text-m text-blue-500">Title</label>
-                        <input type="text" id="title" name="title" class="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        {{form.title}}
+                        {{form.title.errors}}
                     </div>
-                     <div class="form-control my-2">
+                    <div class="form-control my-2">
+                        <label for="email" class="leading-7 font-medium text-m text-blue-500">Email</label>
+                        {{form.email}}
+                        {{form.email.errors}}
+                    </div>
+                    <div class="form-control my-2">
                         <label for="time" class="leading-7 font-medium text-m text-blue-500">Alert Time</label>
-                        <input type="time" id="time" name="time" class="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <input type="datetime-local" id="id_alert_time" name="alert_time" class="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                     </div>
                     <div class="form-control my-2">
                         <label for="description" class="leading-7 font-medium text-m text-blue-500">Description</label>
-                        <textarea id="description" name="description" class="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
+                        {{form.description}}
+                        {{form.description.errors}} 
                     </div>
                     <button type="submit" class="w-full mt-5 text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">Add</button>
                 </form>
@@ -35,78 +43,25 @@ Events
             <div class="events-list-container md:p-5">
                 <h1 class="text-2xl font-medium text-blue-600">List</h1>
                 <ul class='my-3'>
-                    <li class='flex p-5 my-5 bg-gray-200 justify-between hover:bg-gray-300'>
+                    {% if events|length == 0%}
+                        <p class='text-gray-500'>No Events</p>
+                    {% endif %}
+                    {% for event in events %}
+                        <li class='flex p-5 my-5 bg-gray-200 justify-between hover:bg-gray-300'>
                         <div>
-                        Assignments Complishment 
+                        {{event.title}}
                         <br>
-                        <span class="text-sm text-gray-600">Time Left: 1w</span>
+                        <span class="text-sm text-gray-600">{{event.alert_time}}</span>
                         </div>
                         <span class="icons flex">
                             <img src="{% static 'user_side/images/eye.png' %}" alt="Preview">
                             <img src="{% static 'user_side/images/edit.png' %}" alt="Edit">
-                            <img src="{% static 'user_side/images/trash.png' %}" alt="Trash">
+                            <a class="delete-link" href="{% url 'user-event-delete' event.id %}">
+                                <img src="{% static 'user_side/images/trash.png' %}" alt="Trash">
+                            </a>
                         </span>
                     </li>
-                    <li class='flex p-5 my-5 bg-gray-200 justify-between hover:bg-gray-300'>
-                        <div>
-                        Assignments Complishment 
-                        <br>
-                        <span class="text-sm text-gray-600">Time Left: 1w</span>
-                        </div>
-                        <span class="icons flex">
-                            <img src="{% static 'user_side/images/eye.png' %}" alt="Preview">
-                            <img src="{% static 'user_side/images/edit.png' %}" alt="Edit">
-                            <img src="{% static 'user_side/images/trash.png' %}" alt="Trash">
-                        </span>
-                    </li>
-                    <li class='flex p-5 my-5 bg-gray-200 justify-between hover:bg-gray-300'>
-                        <div>
-                        Assignments Complishment 
-                        <br>
-                        <span class="text-sm text-gray-600">Time Left: 1w</span>
-                        </div>
-                        <span class="icons flex">
-                            <img src="{% static 'user_side/images/eye.png' %}" alt="Preview">
-                            <img src="{% static 'user_side/images/edit.png' %}" alt="Edit">
-                            <img src="{% static 'user_side/images/trash.png' %}" alt="Trash">
-                        </span>
-                    </li>
-                    <li class='flex p-5 my-5 bg-gray-200 justify-between hover:bg-gray-300'>
-                        <div>
-                        Assignments Complishment 
-                        <br>
-                        <span class="text-sm text-gray-600">Time Left: 1w</span>
-                        </div>
-                        <span class="icons flex">
-                            <img src="{% static 'user_side/images/eye.png' %}" alt="Preview">
-                            <img src="{% static 'user_side/images/edit.png' %}" alt="Edit">
-                            <img src="{% static 'user_side/images/trash.png' %}" alt="Trash">
-                        </span>
-                    </li><li class='flex p-5 my-5 bg-gray-200 justify-between hover:bg-gray-300'>
-                        <div>
-                        Assignments Complishment 
-                        <br>
-                        <span class="text-sm text-gray-600">Time Left: 1w</span>
-                        </div>
-                        <span class="icons flex">
-                            <img src="{% static 'user_side/images/eye.png' %}" alt="Preview">
-                            <img src="{% static 'user_side/images/edit.png' %}" alt="Edit">
-                            <img src="{% static 'user_side/images/trash.png' %}" alt="Trash">
-                        </span>
-                    </li>
-                    <li class='flex p-5 my-5 bg-gray-200 justify-between hover:bg-gray-300'>
-                        <div>
-                        Assignments Complishment 
-                        <br>
-                        <span class="text-sm text-gray-600">Time Left: 1w</span>
-                        </div>
-                        <span class="icons flex">
-                            <img src="{% static 'user_side/images/eye.png' %}" alt="Preview">
-                            <img src="{% static 'user_side/images/edit.png' %}" alt="Edit">
-                            <img src="{% static 'user_side/images/trash.png' %}" alt="Trash">
-                        </span>
-                    </li>
-                    
+                    {% endfor %}
                 </ul>
             </div>
         </div>

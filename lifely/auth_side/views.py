@@ -7,7 +7,7 @@ from django.contrib import messages
 
 def authLogin(request):
     if request.user.is_authenticated:
-        return redirect('user-dashboard')
+        return redirect('user-profile')
     else:
         if request.method == 'POST':
             username = request.POST.get('username')
@@ -17,7 +17,7 @@ def authLogin(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('user-dashboard')
+                return redirect('user-profile')
             else:
                 messages.info(request, "Username or password is incorrect.")
     context = {}
@@ -26,7 +26,7 @@ def authLogin(request):
 
 def authRegister(request):
     if request.user.is_authenticated:
-        return redirect('user-dashboard')
+        return redirect('user-profile')
     else:
         form = RegisterForm()
 

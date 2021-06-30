@@ -1,16 +1,30 @@
 from django.contrib.auth.forms import PasswordChangeForm
 from django import forms
 from django.contrib.auth.models import User
-from .models import Passwords, Todos
+from .models import Events, Passwords, Todos
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Username', 'class': 'w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', }))
+    email = forms.EmailField(widget=forms.EmailInput(
+        attrs={'placeholder': 'Email', 'class': 'w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', }))
+    first_name = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'First Name', 'class': 'w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', }))
+    last_name = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Last Name', 'class': 'w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', }))
 
 
 class PasswordChangingForm(PasswordChangeForm):
     old_password = forms.CharField(widget=forms.PasswordInput(
-        attrs={'placeholder': 'Old Password', 'class': 'w-full mx-auto bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', 'type': 'password'}))
+        attrs={'placeholder': 'Old Password', 'class': 'w-full mx-auto bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'}))
     new_password1 = forms.CharField(widget=forms.PasswordInput(
-        attrs={'placeholder': 'New Password', 'class': 'w-full mx-auto bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', 'type': 'password'}))
+        attrs={'placeholder': 'New Password', 'class': 'w-full mx-auto bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'}))
     new_password2 = forms.CharField(widget=forms.PasswordInput(
-        attrs={'placeholder': 'Confirm Password', 'class': 'w-full mx-auto bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', 'type': 'password'}))
+        attrs={'placeholder': 'Confirm Password', 'class': 'w-full mx-auto bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'}))
 
     class Meta:
         model = User
@@ -33,5 +47,17 @@ class TodosForm(forms.ModelForm):
         fields = ['title', 'description']
     title = forms.CharField(widget=forms.TextInput(
         attrs={'placeholder': 'Title', 'class': 'w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', }))
+    description = forms.CharField(widget=forms.Textarea(
+        attrs={'placeholder': 'Description', 'class': 'w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', }))
+
+
+class EventsForm(forms.ModelForm):
+    class Meta:
+        model = Events
+        fields = '__all__'
+    title = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Title', 'class': 'w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', }))
+    email = forms.EmailField(widget=forms.EmailInput(
+        attrs={'placeholder': 'Email', 'class': 'w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', }))
     description = forms.CharField(widget=forms.Textarea(
         attrs={'placeholder': 'Description', 'class': 'w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out', }))
