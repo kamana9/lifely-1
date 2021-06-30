@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Profile
+{% endblock title %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static "user_side/css/app.css" %}">
+{% endblock links %}
+
+{% block content %}
+
+{% include 'user_side/includes/navbar.html' %}
+
+<section class="container mx-auto relative">
+    {% include 'user_side/includes/sidebar.html' %}
+    <div id="main-body" class='py-10 md:px-2 relative flex justify-between'>
+        <div class="todo-input-container mx-auto md:p-5">
+            <h1 class="text-3xl font-medium text-blue-600">Profile</h1>
+            <form method="POST" class='my-5'>
+                {% csrf_token %}
+                <div class="form-input my-3">
+                    <label for="username" class="leading-7 font-medium text-sm text-blue-500">Username</label>
+                    {{form.username}}
+                    {{form.username.errors}}
+                </div>
+                <div class="form-input my-3">
+                    <label for="email" class="leading-7 font-medium text-sm text-blue-500">Email</label>
+                    {{form.email}}
+                    {{form.email.errors}}
+                </div>
+                <div class="form-input my-3">
+                    <label for="first_name" class="leading-7 font-medium text-sm text-blue-500">First Name</label>
+                    {{form.first_name}}
+                    {{form.first_name.errors}}
+                </div>
+                <div class="form-input my-3">
+                    <label for="last_name" class="leading-7 font-medium text-sm text-blue-500">Last name</label>
+                    {{form.last_name}}
+                    {{form.last_name.errors}}
+                </div>
+                <a href="{% url 'change-password' %}" class="leading-7 font-medium text-lg text-blue-500">Change Password</a>
+                <button type="submit" class="w-full mt-5 text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">Update</button>
+            </form>
+        </div>
+    </div>
+</section>
+    
+{% endblock %}

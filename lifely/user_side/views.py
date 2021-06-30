@@ -1,11 +1,11 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout
-from .forms import PasswordChangingForm, PasswordForm, TodosForm
+from .forms import EventsForm, PasswordChangingForm, PasswordForm, TodosForm, UserUpdateForm
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from .models import Passwords, Todos
+from .models import Passwords, Todos, Events
 
 
 def logoutUser(request):
@@ -14,7 +14,24 @@ def logoutUser(request):
 
 
 @login_required(login_url='login')
-def dashboard(request):
+def profile(request):
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('user-profile')
+    else:
+        form = UserUpdateForm(instance=request.user)
+
+    context = {
+        'form': form
+    }
+
+    return render(request, "user_side/profile.html", context)
+
+
+@login_required(login_url='login')
+def todos(request):
     form = TodosForm
     if request.method == 'POST':
         form = TodosForm(request.POST)
@@ -24,7 +41,7 @@ def dashboard(request):
         if form.is_valid():
             form.save()
     todos = Todos.objects.filter(user=request.user).order_by('-id')
-    return render(request, "user_side/dashboard.html", {
+    return render(request, "user_side/todos.html", {
         "todos": todos,
         'form': form
     })
@@ -32,7 +49,19 @@ def dashboard(request):
 
 @login_required(login_url='login')
 def events(request):
-    return render(request, "user_side/events.html")
+    form = EventsForm
+    if request.method == 'POST':
+        form = EventsForm(request.POST)
+        instance = form.save(commit=False)
+        instance.user = request.user
+        instance.save()
+        if form.is_valid():
+            form.save()
+    events = Events.objects.filter(user=request.user).order_by('-id')
+    return render(request, "user_side/events.html", {
+        "events": events,
+        'form': form
+    })
 
 
 @login_required(login_url='login')
@@ -56,7 +85,7 @@ def passwords(request):
 def deleteTodo(request, pk):
     item = Todos.objects.get(id=pk)
     item.delete()
-    return redirect("user-dashboard")
+    return redirect("user-todos")
 
 
 @login_required(login_url='login')
@@ -66,7 +95,16 @@ def deletePassword(request, pk):
     return redirect("user-passwords")
 
 
+@login_required(login_url='login')
+def deleteEvent(request, pk):
+    item = Events.objects.get(id=pk)
+    item.delete()
+    return redirect("user-events")
+
+
 # @login_required(login_url='login')
+
+
 class PasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     form_class = PasswordChangingForm
     success_url = reverse_lazy('login')
