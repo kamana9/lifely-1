@@ -1,0 +1,93 @@
+.errorlist li,
+.error {
+  font-size: 14px !important;
+  color: orangered !important;
+}
+
+.error {
+  margin: 1rem 0;
+}
+
+ /*input {
+  max-width: 400px !important;
+  display: block;
+} */
+
+aside#side-menu {
+  min-width: 300px;
+}
+
+#side-menu li img {
+  width: 3rem !important;
+  height: auto;
+}
+
+#side-menu li {
+  transition: all 0.3s ease-in-out;
+  border-right: 5px solid transparent;
+}
+
+#side-menu li:hover {
+  border-right: 5px solid #05a6d9;
+}
+
+#main-body {
+  left: 300px;
+  width: calc(100% - 300px);
+}
+
+#main-body form input {
+  width: 100% !important;
+}
+
+#main-body .todo-input-container,
+#main-body .events-input-container,
+#main-body .password-input-container {
+  width: 50%;
+}
+
+#main-body .todo-list-container,
+#main-body .events-list-container,
+#main-body .password-list-container {
+  width: 50%;
+  margin-left: 2rem;
+}
+
+@media screen and (max-width: 1024px) {
+  #main-body {
+    flex-direction: column !important;
+  }
+
+  #main-body .todo-input-container,
+  #main-body .events-input-container,
+  #main-body .password-input-container {
+    width: 100%;
+  }
+
+  #main-body .todo-list-container,
+  #main-body .events-list-container,
+  #main-body .password-list-container {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+#main-body .todo-list-container ul,
+#main-body .events-list-container ul,
+#main-body .password-list-container ul {
+  max-height: 500px;
+  overflow: auto;
+}
+
+#main-body ul li {
+  align-items: center !important;
+  border-radius: 5px !important;
+}
+
+#main-body .todo-list-container ul .icons img,
+#main-body .events-list-container ul .icons img,
+#main-body .password-list-container ul .icons img {
+  width: 0.8rem;
+  height: 0.8rem;
+  margin: 0 5px;
+}

@@ -1,0 +1,30 @@
+{% load static %}
+
+<aside id="side-menu" class='absolute top-0 left-0 px-5 py-8'>
+    <ul>
+        <li class='my-5'>
+            <a href="{% url 'user_side:user-dashboard' %}" class="flex">
+                <img src="{% static 'user_side/images/todo.png' %}" alt="Todo">
+                <span class='mt-3 ml-5 text-1xl font-medium text-blue-500'>Todo</span>
+            </a>
+        </li>
+        <li class='my-5'>
+            <a href="{% url 'user_side:user-events' %}" class="flex">
+                <img src="{% static 'user_side/images/events.png' %}" alt="Events">
+                <span class='mt-3 ml-5 text-1xl font-medium text-blue-500'>Events</span>
+            </a>
+        </li>
+        <li class='my-5'>
+            <a href="{% url 'user_side:user-passwords' %}" class="flex">
+                <img src="{% static 'user_side/images/manager.png' %}" alt="Manager">
+                <span class='mt-3 ml-5 text-1xl font-medium text-blue-500'>Passwords</span>
+            </a>
+        </li>
+        <li class='my-5'>
+             <a href="{% url 'user_side:user-dashboard' %}" class="flex">
+                <img src="{% static 'user_side/images/setting.png' %}" alt="Settings">
+                <span class='mt-3 ml-5 text-1xl font-medium text-blue-500'>Settings</span>
+            </a>
+        </li>
+    </ul>
+</aside>

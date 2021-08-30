@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Lifely
+{% endblock title %}
+
+{% block content %}
+    {% include 'visitor_side/includes/navbar.html' %}
+
+    <!-- Banner-->
+    <div class="mh-12 .shadow-md ">
+        <img src="{%static 'images/banner.jpg'%}">
+    </div>
+    <!-- End Banner-->
+
+    <!-- Feature Showcase-->
+    {% include 'visitor_side/feature_showcase.html' %}
+    <!-- End Feature Showcase-->
+
+    <!-- Short Details-->
+    {% include 'visitor_side/short_details.html' %}
+    <!-- End Short Details-->
+
+    <!-- Our Team -->
+    {% include 'visitor_side/our_team.html' %}
+    <!-- End Our Team -->
+
+    <!-- Testimonial -->
+    {% include 'visitor_side/testimonial.html' %}
+    <!-- End Testimonial -->
+
+    <!-- Contact US -->
+    {% include 'visitor_side/contact_us.html' %}
+    <!-- End Contact US -->
+
+    {% include 'visitor_side/includes/footer.html' %}
+{% endblock content %}

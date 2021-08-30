@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+TODO
+{% endblock title %}
+
+{% block content %}
+    {% include 'visitor_side/includes/navbar.html' %}
+    <section class="container  mx-auto">
+        <h1 class='text-3xl'>TODO</h1><br><br>
+    <div class="detail">
+    <h1 class="title"> {{todo.title}} </h1><br>
+    <p class="desc">{{todo.description}}</p>
+    
+    </div>
+    </section>
+{% endblock content %}

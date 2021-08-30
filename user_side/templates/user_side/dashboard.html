@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Dashboard
+{% endblock title %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static "user_side/css/app.css" %}">
+{% endblock links %}
+
+{% block content %}
+    {% include 'user_side/includes/navbar.html' %}
+    <main class="container mx-auto relative">
+        {% include 'user_side/includes/sidebar.html' %}
+        <div id="main-body" class='py-10 md:px-2 relative flex justify-between'>
+            <div class="todo-input-container md:p-5">
+                <h1 class="text-3xl font-medium text-blue-600">TODO</h1>
+                <form method="POST" class='my-5'>
+                    {% csrf_token %}
+                    <div class="form-control my-2">
+                        <label for="title" class="leading-7 font-medium text-m text-blue-500">Title</label>
+                        <input type="text" id="title" name="title" class="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                        {{form.title}}
+                        {{form.title.errors}}
+                    </div>
+                    <div class="form-control my-2">
+                        <label for="description" class="leading-7 font-medium text-m text-blue-500">Description</label>
+                       <input type="text" id="description"  name="description" class="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                        {{form.description}}
+                        {{form.description.errors}}
+                    </div>
+                    <button type="submit" class="w-full mt-5 text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">Add</button>
+                </form>
+            </div>
+            <div class="todo-list-container md:p-5">
+                <h1 class="text-2xl font-medium text-blue-600">List</h1>
+                <ul class='my-3'>
+                    {% if todos|length == 0%}
+                        <p class='text-gray-500'>No Todos</p>
+                    {% endif %}
+                    {% for todo in todos %}
+                        <li class='flex p-5 my-5 bg-gray-200 justify-between'>
+                            <span>{{todo.title}}</span>
+                            <span class="icons flex">
+                                <a href="{%url 'user_side:tododetail' todo.id%}"><img src="{% static 'user_side/images/eye.png' %}" alt="Preview"></a>
+                                <a href="{%url 'user_side:todoupdate' todo.id%}"><img src="{% static 'user_side/images/edit.png' %}" alt="Edit"></a>
+                                <a class="delete-link" href="{% url 'user_side:user-todo-delete' todo.id %}">
+                                    <img src="{% static 'user_side/images/trash.png' %}" alt="Trash">
+                                </a>
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+{% endblock %}
